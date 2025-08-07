@@ -1,12 +1,52 @@
-# File generati localmente dal build script
-/index.html
-/en/
-/blog/
+# ===================================================================
+# Generated Site Output (LA REGOLA PIÙ IMPORTANTE PER QUESTO PROGETTO)
+# ===================================================================
+# Ignora l'intera cartella dove vengono creati i file HTML finali.
+# Questo impedisce che i file generati vengano caricati su Git.
+/_site/
 
-# Cartelle di cache di Python
+
+# ===================================================================
+# Python - Ambienti Virtuali
+# ===================================================================
+# Ignora le cartelle degli ambienti virtuali (venv) per non caricare
+# l'intera installazione di librerie Python su Git.
+/venv/
+/env/
+/.venv/
+/.env/
+
+
+# ===================================================================
+# Python - Cache e file compilati
+# ===================================================================
+# Cartelle e file generati da Python per velocizzare l'esecuzione.
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 
-# File di sistema
+
+# ===================================================================
+# File di configurazione degli Editor / IDE
+# ===================================================================
+# In questo modo, le impostazioni personali del tuo editor (VSCode,
+# PyCharm, ecc.) non vengono condivise nel progetto.
+.vscode/
+.idea/
+
+
+# ===================================================================
+# File di Sistema Operativo
+# ===================================================================
+# File "spazzatura" generati automaticamente da macOS, Windows e Linux.
 .DS_Store
 Thumbs.db
+desktop.ini
+
+
+# ===================================================================
+# File di Log e Temporanei
+# ===================================================================
+*.log
+tmp/
