@@ -35,7 +35,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: . # La root del progetto dove main.py genera l'output
+          publish_dir: ./_site # La root del progetto dove main.py genera l'output
           publish_branch: gh-pages # <<<--- ASSICURATI CHE QUESTA RIGA SIA PRESENTE E NON COMMENTATA
           force_orphan: true # Opzionale: crea una branch gh-pages pulita ogni volta, senza storia precedente. Utile.
           # cname: yourdomain.com # Se hai un dominio personalizzato

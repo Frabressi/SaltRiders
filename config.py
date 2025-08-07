@@ -874,7 +874,7 @@ MAP_DATA_COORDS = {
 }
 
 # --- Percorsi ---
-BASE_OUTPUT_DIR = "."
+BASE_OUTPUT_DIR = "_site"
 IMAGES_DIR_NAME = "images"
 CSS_DIR_NAME = "css"
 BLOG_POSTS_DIR = "_posts"
