@@ -1,0 +1,12 @@
+# File generati localmente dal build script
+/index.html
+/en/
+/blog/
+
+# Cartelle di cache di Python
+__pycache__/
+*.pyc
+
+# File di sistema
+.DS_Store
+Thumbs.db
