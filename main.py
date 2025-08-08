@@ -142,5 +142,5 @@ if __name__ == "__main__":
         print("Aggiungi 'BASE_OUTPUT_DIR = \"_site\"' al tuo file di configurazione.")
     else:
         build_site()
-        print("\n--- Processo di generazione del sito completato. ---")
+        print("\n--- Processo di generazione del sito completato. ---")#
 
