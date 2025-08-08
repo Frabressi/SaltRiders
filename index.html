@@ -1,0 +1,2819 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SaltRiders: L'Avventura Epica (e un po' Folle) di GG & Paco - Itinerario 2025-2026</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/marslan390/BeautifyMarker/leaflet-beautify-marker-icon.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-locatecontrol/0.66.2/L.Control.Locate.min.css"/>
+
+    <style>
+        :root {
+            --primary-color: #007bff; 
+            --secondary-color: #0056b3; 
+            --text-dark: #2c3e50;
+            --text-light: #555;
+            --bg-light: #f4f7f6;
+            --bg-white: #ffffff;
+            --bg-darker: #eef1f5;
+            --navbar-height: 60px; 
+            --footer-height: 50px; 
+        }
+
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Open Sans', sans-serif; 
+            background-color: var(--bg-light); 
+            color: var(--text-dark); 
+            margin: 0; 
+            padding-top: var(--navbar-height); 
+            line-height: 1.7;
+            font-weight: 400;
+            padding-bottom: var(--footer-height); 
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+        .navbar-custom {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            height: var(--navbar-height);
+            padding: 0.5rem 1rem;
+        }
+        .navbar-custom .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+        .navbar-custom .nav-link {
+            color: var(--text-light);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+        .navbar-custom .nav-link:hover,
+        .navbar-custom .nav-link.active {
+            color: var(--primary-color);
+        }
+        .navbar-custom .language-switcher a {
+            font-size: 1.1rem; 
+            padding: 0.3rem 0.7rem; 
+            margin-left: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            color: var(--text-light);
+            opacity: 0.7;
+        }
+        .navbar-custom .language-switcher a:hover {
+            opacity: 1;
+            color: var(--primary-color);
+        }
+        .navbar-custom .language-switcher .active-lang {
+            opacity: 1;
+            font-weight: bold; 
+             color: var(--primary-color); 
+        }
+
+        .header-banner { 
+            background-image: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)), url('https://www.thejambo.it/wp-content/uploads/2023/05/Le-migliori-destinazioni-al-mondo-per-fare-surf-Foto-di-Canva-3-1024x683.png');
+            background-size: cover;
+            background-position: center center;
+            color: white; 
+            padding: 120px 20px 100px 20px; 
+            text-align: center; 
+            margin-top: calc(-1 * var(--navbar-height)); 
+        }
+        .header-banner h1 { 
+            font-size: 4rem; 
+            font-weight: 800; 
+            margin-bottom: 1.2rem; 
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7); 
+            color: #fff;
+        }
+        .header-banner .subtitle { 
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.7rem; 
+            font-weight: 400; 
+            opacity: 0.95; 
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+            color: #f0f0f0;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .content-section { 
+            padding: 70px 15px; 
+            opacity: 0; 
+            transform: translateY(30px); 
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .content-section.visible { opacity: 1; transform: translateY(0); }
+        .bg-light-custom { background-color: var(--bg-white); }
+        .bg-darker-custom { background-color: var(--bg-darker); }
+        .section-title { 
+            font-size: 2.8rem; 
+            font-weight: 700; 
+            color: var(--secondary-color); 
+            margin-bottom: 50px; 
+            text-align: center; 
+            position: relative; 
+        }
+        .section-title::after { 
+            content: ''; display: block; width: 90px; height: 4px; 
+            background-color: var(--primary-color); margin: 18px auto 0; border-radius: 2px;
+        }
+        .character-card { 
+            background-color: var(--bg-white); border: none; border-radius: 18px; 
+            padding: 40px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07); 
+            text-align: center; 
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
+            height: 100%; display: flex; flex-direction: column; align-items: center;
+        }
+        .character-card:hover { transform: translateY(-12px); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); }
+        .character-card .profile-pic {
+            width: 170px; height: 170px; border-radius: 50%;
+            object-fit: cover; margin-bottom: 28px;
+            border: 6px solid var(--primary-color); box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .character-card h3 { color: var(--text-dark); font-size: 1.7rem; font-weight: 700; margin-bottom: 18px; }
+        .character-card p { font-size: 0.98rem; color: var(--text-light); line-height: 1.65; }
+        .trip-description p, .equipment-description p { 
+            font-size: 1.1rem; text-align: left; margin-bottom: 22px; 
+            color: #4a4a4a; max-width: 820px; margin-left: auto; margin-right: auto;
+        }
+        .trip-description ul { list-style: none; padding-left: 0; max-width: 820px; margin-left: auto; margin-right: auto; }
+        .trip-description ul li { 
+            padding-left: 2.2em; text-indent: -2.2em; margin-bottom: 15px; 
+            font-size: 1.05rem; position: relative;
+        }
+        .trip-description ul li i.fas { 
+            color: var(--primary-color); margin-right: 15px; width: 1.6em; 
+            text-align: center; font-size: 1.15em; vertical-align: middle;
+        }
+        .trip-description ul ul { margin-top: 12px; padding-left: 28px; }
+        .equipment-image-container { text-align: center; margin-top: 15px; margin-bottom: 25px; }
+        .equipment-image {
+            max-width: 80%; 
+            height: auto; border-radius: 15px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.1); border: 1px solid #ccc;
+        }
+        .equipment-image-caption { font-size: 0.92rem; color: #6c757d; margin-top: 18px; font-style: italic; }
+
+        #map-container {
+            width: 100%;
+            height: clamp(350px, 70vh, 600px); 
+            border-radius: 18px;
+            overflow: hidden; 
+            box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+            margin-top: 35px; 
+            background-color: #e0e0e0; 
+            position: relative; 
+            will-change: transform, opacity;
+        }
+        #map-container .folium-map { 
+            width: 100%; 
+            height: 100%; 
+            position: absolute; 
+            top: 0;
+            left: 0;
+            border-radius: inherit; 
+        }
+        .leaflet-container {
+            background: var(--bg-darker) !important; 
+        }
+
+        .leaflet-control-container .leaflet-control-layers {
+            opacity: 0.97; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,0.18);
+        }
+        .leaflet-control-layers-toggle { width: 42px !important; height: 42px !important; line-height: 42px !important; font-size: 1.25em; }
+        .leaflet-control-layers-expanded { padding: 15px; font-size: 1rem; }
+        .beautify-marker i.fa { vertical-align: baseline; }
+        footer { 
+            position: fixed; left: 0; bottom: 0; width: 100%;
+            text-align: center; padding: 10px 20px; 
+            background-color: var(--text-dark); color: #ced4da; 
+            font-size: 0.85rem; z-index: 1000; 
+        }
+        footer p { margin-bottom: 0; }
+
+        @media (max-width: 991.98px) { 
+            :root { --navbar-height: 56px; }
+            .header-banner h1 { font-size: 3.2rem; } 
+            .header-banner .subtitle { font-size: 1.5rem; } 
+            .section-title { font-size: 2.5rem; }
+            .character-card { padding: 30px; }
+            .character-card .profile-pic { width: 150px; height: 150px; }
+            .navbar-custom .navbar-brand { font-size: 1.3rem; }
+            .navbar-custom .nav-link { font-size: 0.9rem; padding: 0.5rem 0.8rem;}
+            .navbar-custom .language-switcher { display: flex; align-items: center; }
+            .navbar-custom .navbar-collapse.show, 
+            .navbar-custom .navbar-collapse.collapsing {
+                background-color: var(--bg-white); 
+                box-shadow: 0 8px 16px rgba(0,0,0,0.15); 
+                border-bottom-left-radius: .5rem;
+                border-bottom-right-radius: .5rem;
+                padding: 1rem; 
+                margin-top: 0; 
+                border-top: 1px solid var(--bg-darker); 
+            }
+            .navbar-custom .navbar-collapse .nav-item { margin-bottom: 0.5rem; }
+            .navbar-custom .navbar-collapse .nav-link { color: var(--text-dark) !important; padding: .5rem 0; }
+            .navbar-custom .navbar-collapse .nav-link:hover,
+            .navbar-custom .navbar-collapse .nav-link.active { color: var(--primary-color) !important; }
+            .navbar-custom .navbar-collapse .language- switcher { justify-content: flex-start; padding: .5rem 0; }
+        }
+
+        @media (max-width: 768px) { 
+            .header-banner { padding: 100px 15px 80px 15px; }
+            .header-banner h1 { font-size: 2.6rem; } 
+            .header-banner .subtitle { font-size: 1.3rem; } 
+            .section-title { font-size: 2.1rem; }
+            .content-section { padding: 50px 15px; }
+            .character-card { margin-bottom: 30px; } 
+            .character-card .profile-pic { width: 130px; height: 130px; }
+            .trip-description p, .equipment-description p { font-size: 1.05rem; }
+            .equipment-image { max-width: 90%; }
+            #map-container { 
+                height: clamp(300px, 55vh, 450px);
+            } 
+            .navbar-toggler { margin-right: 0.5rem;}
+            footer { font-size: 0.8rem; padding: 8px 15px;} 
+            :root { --footer-height: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">SaltRiders</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#mappa">La Mappa del Viaggio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#protagonisti">Eroi (o Anti-Eroi?)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#avventura">L'Odissea</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#attrezzatura">Ferraglia & Sogni</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog/it.html">Diario di Bordo</a>
+                    </li>
+                    
+                </ul>
+                <div class="language-switcher d-flex align-items-center">
+                    <a href="index.html" class="active-lang" title="Italiano">🇮🇹</a>
+                    <a href="en/index.html" class="" title="English">🇬🇧</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="header-banner" id="home">
+        <div class="container">
+            <h1>SaltRiders World Tour</h1>
+            <p class="subtitle">L'incredibile itinerario 2025-2026 di GG & Paco, un'epopea via terra e mare all'insegna del bikepacking, del surf, dello slow travel e di un approccio sostenibile all'esplorazione.</p>
+        </div>
+    </header>
+
+    <section id="mappa" class="content-section bg-light-custom">
+        <div class="container">
+            <h2 class="section-title">La Mappa del Viaggio</h2>
+            <div id="map-container">
+                <div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -> Trust Notebook</span><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/&gt;
+    
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
+            &lt;style&gt;
+                #map_e3200b0f4030762d031f58b8e3e0f3df {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            &lt;/style&gt;
+
+            &lt;style&gt;html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            &lt;/style&gt;
+
+            &lt;style&gt;#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            &lt;/style&gt;
+
+            &lt;script&gt;
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            &lt;/script&gt;
+
+        
+    &lt;script src=&quot;https://cdn.jsdelivr.net/gh/marslan390/BeautifyMarker/leaflet-beautify-marker-icon.min.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/marslan390/BeautifyMarker/leaflet-beautify-marker-icon.min.css&quot;/&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css&quot;/&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css&quot;/&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet-locatecontrol/0.66.2/L.Control.Locate.min.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet-locatecontrol/0.66.2/L.Control.Locate.min.css&quot;/&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    
+    
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_e3200b0f4030762d031f58b8e3e0f3df&quot; &gt;&lt;/div&gt;
+        
+&lt;/body&gt;
+&lt;script&gt;
+    
+    
+            var map_e3200b0f4030762d031f58b8e3e0f3df = L.map(
+                &quot;map_e3200b0f4030762d031f58b8e3e0f3df&quot;,
+                {
+                    center: [20.0, -15.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  &quot;zoom&quot;: 2,
+  &quot;zoomControl&quot;: true,
+  &quot;preferCanvas&quot;: false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_111e2a43653c67d7d9f5cccad04f9c7d = L.tileLayer(
+                &quot;https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png&quot;,
+                {
+  &quot;minZoom&quot;: 0,
+  &quot;maxZoom&quot;: 20,
+  &quot;maxNativeZoom&quot;: 20,
+  &quot;noWrap&quot;: false,
+  &quot;attribution&quot;: &quot;CartoDB Positron&quot;,
+  &quot;subdomains&quot;: &quot;abcd&quot;,
+  &quot;detectRetina&quot;: false,
+  &quot;tms&quot;: false,
+  &quot;opacity&quot;: 1,
+}
+
+            );
+        
+    
+            tile_layer_111e2a43653c67d7d9f5cccad04f9c7d.addTo(map_e3200b0f4030762d031f58b8e3e0f3df);
+        
+    
+            var tile_layer_97e6a0c2dbdd502c5450c795696fb8a1 = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {
+  &quot;minZoom&quot;: 0,
+  &quot;maxZoom&quot;: 19,
+  &quot;maxNativeZoom&quot;: 19,
+  &quot;noWrap&quot;: false,
+  &quot;attribution&quot;: &quot;OpenStreetMap&quot;,
+  &quot;subdomains&quot;: &quot;abc&quot;,
+  &quot;detectRetina&quot;: false,
+  &quot;tms&quot;: false,
+  &quot;opacity&quot;: 1,
+}
+
+            );
+        
+    
+            tile_layer_97e6a0c2dbdd502c5450c795696fb8a1.addTo(map_e3200b0f4030762d031f58b8e3e0f3df);
+        
+    
+            var tile_layer_533746ddbc0c78b1c10cd82ccb0909dc = L.tileLayer(
+                &quot;https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}&quot;,
+                {
+  &quot;minZoom&quot;: 0,
+  &quot;maxZoom&quot;: 18,
+  &quot;maxNativeZoom&quot;: 18,
+  &quot;noWrap&quot;: false,
+  &quot;attribution&quot;: &quot;Esri World Imagery&quot;,
+  &quot;subdomains&quot;: &quot;abc&quot;,
+  &quot;detectRetina&quot;: false,
+  &quot;tms&quot;: false,
+  &quot;opacity&quot;: 1,
+}
+
+            );
+        
+    
+            tile_layer_533746ddbc0c78b1c10cd82ccb0909dc.addTo(map_e3200b0f4030762d031f58b8e3e0f3df);
+        
+    
+            var feature_group_549aa684c493680fd140acc4194c06eb = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_c5d15157aabff2631b9cb0acf3db5378 = L.marker(
+                [45.4642, 9.19],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var beautify_icon_624eb6624104a566457faaadabb458e1 = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;train&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#E74C3C&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#E74C3C&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_c5d15157aabff2631b9cb0acf3db5378.setIcon(beautify_icon_624eb6624104a566457faaadabb458e1);
+        
+    
+        var popup_dfdb533b531683d5467011d32cbbe055 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_16260061c44c8f6fa45c8d1a1c1a9309 = $(`&lt;div id=&quot;html_16260061c44c8f6fa45c8d1a1c1a9309&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Milano - Qui inizia la follia!&lt;/div&gt;`)[0];
+                popup_dfdb533b531683d5467011d32cbbe055.setContent(html_16260061c44c8f6fa45c8d1a1c1a9309);
+            
+        
+
+        marker_c5d15157aabff2631b9cb0acf3db5378.bindPopup(popup_dfdb533b531683d5467011d32cbbe055)
+        ;
+
+        
+    
+    
+                marker_c5d15157aabff2631b9cb0acf3db5378.setIcon(beautify_icon_624eb6624104a566457faaadabb458e1);
+            
+    
+            var marker_e2da0a3beb7075e54a1d556c622e20ca = L.marker(
+                [45.4642, 9.19],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var div_icon_26c90c19ef81aeb45b94ea913d4a7bd2 = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e10 Set 25\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_e2da0a3beb7075e54a1d556c622e20ca.setIcon(div_icon_26c90c19ef81aeb45b94ea913d4a7bd2);
+            
+    
+            var marker_e8e82b991b57b802f6f6592166590059 = L.marker(
+                [45.0703, 7.6869],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var beautify_icon_3929ed5fb71d13e33599a7e57d3a6b6c = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;train&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#E74C3C&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#E74C3C&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_e8e82b991b57b802f6f6592166590059.setIcon(beautify_icon_3929ed5fb71d13e33599a7e57d3a6b6c);
+        
+    
+        var popup_1d60bb0bdf532ed712be9df18e648cb6 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_5623a105a4b2871795ecd0a0021deba6 = $(`&lt;div id=&quot;html_5623a105a4b2871795ecd0a0021deba6&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Torino - Pronti per le Alpi?!&lt;/div&gt;`)[0];
+                popup_1d60bb0bdf532ed712be9df18e648cb6.setContent(html_5623a105a4b2871795ecd0a0021deba6);
+            
+        
+
+        marker_e8e82b991b57b802f6f6592166590059.bindPopup(popup_1d60bb0bdf532ed712be9df18e648cb6)
+        ;
+
+        
+    
+    
+                marker_e8e82b991b57b802f6f6592166590059.setIcon(beautify_icon_3929ed5fb71d13e33599a7e57d3a6b6c);
+            
+    
+            var marker_2bc9cfd13b7b7ba48cd1e172fdaf4081 = L.marker(
+                [45.0703, 7.6869],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var div_icon_70ad84a3d5b7dc1819bc4d946335ff8f = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e10 Set 25\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_2bc9cfd13b7b7ba48cd1e172fdaf4081.setIcon(div_icon_70ad84a3d5b7dc1819bc4d946335ff8f);
+            
+    
+            var poly_line_3d2a5219eebf5ab39fe6e0c2cc7468ba = L.polyline(
+                [[45.4642, 9.19], [45.0703, 7.6869]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#E74C3C&quot;, &quot;dashArray&quot;: &quot;2,6&quot;, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;#E74C3C&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 4}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            poly_line_3d2a5219eebf5ab39fe6e0c2cc7468ba.bindTooltip(
+                `&lt;div&gt;
+                     Treno Milano→Torino (10 Set 25) - Il riscaldamento
+                 &lt;/div&gt;`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_f747d0ece5e3c578a994417769f668d7 = L.marker(
+                [45.0703, 7.6869],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var beautify_icon_01e470ee62a4cfedb9dd488a1c476ff2 = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;person-biking&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#F39C12&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#F39C12&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_f747d0ece5e3c578a994417769f668d7.setIcon(beautify_icon_01e470ee62a4cfedb9dd488a1c476ff2);
+        
+    
+        var popup_85413aad8c39a208a0184d0f55b7e19a = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_c059f5fd40d2966238ea6b9ca8db7b27 = $(`&lt;div id=&quot;html_c059f5fd40d2966238ea6b9ca8db7b27&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Torino - Inizio Bici (e sofferenza alpina)&lt;/div&gt;`)[0];
+                popup_85413aad8c39a208a0184d0f55b7e19a.setContent(html_c059f5fd40d2966238ea6b9ca8db7b27);
+            
+        
+
+        marker_f747d0ece5e3c578a994417769f668d7.bindPopup(popup_85413aad8c39a208a0184d0f55b7e19a)
+        ;
+
+        
+    
+    
+                marker_f747d0ece5e3c578a994417769f668d7.setIcon(beautify_icon_01e470ee62a4cfedb9dd488a1c476ff2);
+            
+    
+            var marker_53c12d7eb4c02e2ef751465e53cd806c = L.marker(
+                [45.0703, 7.6869],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var div_icon_6147e75d71ad39a028b579d347702625 = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e10 Set 25\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_53c12d7eb4c02e2ef751465e53cd806c.setIcon(div_icon_6147e75d71ad39a028b579d347702625);
+            
+    
+            var marker_bedc05cc7a46880adcbaadf49e3f7159 = L.marker(
+                [45.1885, 5.7245],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var beautify_icon_f8d50b9f8bf3c198a219008de472f631 = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;person-biking&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#F39C12&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#F39C12&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_bedc05cc7a46880adcbaadf49e3f7159.setIcon(beautify_icon_f8d50b9f8bf3c198a219008de472f631);
+        
+    
+        var popup_2472dea8345007e156a5b8c3c331e6ea = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_e4264895af8871aa31f44f909e77b5be = $(`&lt;div id=&quot;html_e4264895af8871aa31f44f909e77b5be&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Grenoble - Sopravvissuti alle Alpi!&lt;/div&gt;`)[0];
+                popup_2472dea8345007e156a5b8c3c331e6ea.setContent(html_e4264895af8871aa31f44f909e77b5be);
+            
+        
+
+        marker_bedc05cc7a46880adcbaadf49e3f7159.bindPopup(popup_2472dea8345007e156a5b8c3c331e6ea)
+        ;
+
+        
+    
+    
+                marker_bedc05cc7a46880adcbaadf49e3f7159.setIcon(beautify_icon_f8d50b9f8bf3c198a219008de472f631);
+            
+    
+            var marker_db09a2acdd9d999837ffe3a03e47cc50 = L.marker(
+                [45.1885, 5.7245],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var div_icon_85f07b8e2f5e40aa4ab4a40971744e09 = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e11 Set 25\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_db09a2acdd9d999837ffe3a03e47cc50.setIcon(div_icon_85f07b8e2f5e40aa4ab4a40971744e09);
+            
+    
+            var poly_line_0f9bb363bc4b5ea497e021747253ec53 = L.polyline(
+                [[45.0703, 7.6869], [45.1885, 5.7245]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#F39C12&quot;, &quot;dashArray&quot;: &quot;5,8&quot;, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;#F39C12&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 4}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            poly_line_0f9bb363bc4b5ea497e021747253ec53.bindTooltip(
+                `&lt;div&gt;
+                     Bici Torino→Grenoble (10-11 Set 25) - &#x27;Una passeggiata&#x27;, dicevano...
+                 &lt;/div&gt;`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_17edffa1a13013d8fd48522cb1cf5f41 = L.marker(
+                [45.1885, 5.7245],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var beautify_icon_65aa30df1aa02fb68ea0cb99c7e3522a = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;bus&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#8E44AD&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#8E44AD&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_17edffa1a13013d8fd48522cb1cf5f41.setIcon(beautify_icon_65aa30df1aa02fb68ea0cb99c7e3522a);
+        
+    
+        var popup_3c77498365fcc0bc392f3e956c5337bb = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_c806e5e52f6a779e0c8324b276c97e4c = $(`&lt;div id=&quot;html_c806e5e52f6a779e0c8324b276c97e4c&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Grenoble - Pausa tattica in bus&lt;/div&gt;`)[0];
+                popup_3c77498365fcc0bc392f3e956c5337bb.setContent(html_c806e5e52f6a779e0c8324b276c97e4c);
+            
+        
+
+        marker_17edffa1a13013d8fd48522cb1cf5f41.bindPopup(popup_3c77498365fcc0bc392f3e956c5337bb)
+        ;
+
+        
+    
+    
+                marker_17edffa1a13013d8fd48522cb1cf5f41.setIcon(beautify_icon_65aa30df1aa02fb68ea0cb99c7e3522a);
+            
+    
+            var marker_5ece5cd1191872570a22507ca580f2db = L.marker(
+                [45.1885, 5.7245],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var div_icon_5ce046e57231bf30c007dd5b8283ed46 = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e11 Set 25\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_5ece5cd1191872570a22507ca580f2db.setIcon(div_icon_5ce046e57231bf30c007dd5b8283ed46);
+            
+    
+            var marker_f45b1c76b7f339a285e154173b3b1e64 = L.marker(
+                [43.3183, -1.9812],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var beautify_icon_0a0ff355e0b06f5d710d5597030a0a9b = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;bus&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#8E44AD&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#8E44AD&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_f45b1c76b7f339a285e154173b3b1e64.setIcon(beautify_icon_0a0ff355e0b06f5d710d5597030a0a9b);
+        
+    
+        var popup_0a2e745d09cff3d0c9762267288a4e95 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_d60d8537391c4725351d7611fc0256c2 = $(`&lt;div id=&quot;html_d60d8537391c4725351d7611fc0256c2&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;San Sebastián - Rieccoci!&lt;/div&gt;`)[0];
+                popup_0a2e745d09cff3d0c9762267288a4e95.setContent(html_d60d8537391c4725351d7611fc0256c2);
+            
+        
+
+        marker_f45b1c76b7f339a285e154173b3b1e64.bindPopup(popup_0a2e745d09cff3d0c9762267288a4e95)
+        ;
+
+        
+    
+    
+                marker_f45b1c76b7f339a285e154173b3b1e64.setIcon(beautify_icon_0a0ff355e0b06f5d710d5597030a0a9b);
+            
+    
+            var marker_8e5f591edbfcfa273fb10e7f5afc0518 = L.marker(
+                [43.3183, -1.9812],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var div_icon_89a35f0f50348eb7c1cbbb07952228af = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e12 Set 25\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_8e5f591edbfcfa273fb10e7f5afc0518.setIcon(div_icon_89a35f0f50348eb7c1cbbb07952228af);
+            
+    
+            var poly_line_258bb7f47fc76040bf9915d1eb4920b4 = L.polyline(
+                [[45.1885, 5.7245], [43.3183, -1.9812]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#8E44AD&quot;, &quot;dashArray&quot;: &quot;2,10&quot;, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;#8E44AD&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 4}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            poly_line_258bb7f47fc76040bf9915d1eb4920b4.bindTooltip(
+                `&lt;div&gt;
+                     Bus Grenoble→San Sebastián (11-12 Set 25) - Civilizzazione temporanea
+                 &lt;/div&gt;`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_71d9ec49967792e14b969e758965306d = L.marker(
+                [43.3183, -1.9812],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var beautify_icon_8f86000ce6bf0caecef77eb87a3567ec = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;person-biking&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#F39C12&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#F39C12&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_71d9ec49967792e14b969e758965306d.setIcon(beautify_icon_8f86000ce6bf0caecef77eb87a3567ec);
+        
+    
+        var popup_0492753dd07ff68428e30a6d656e5c03 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_64b661e0f696a7a03042070fc1bb780b = $(`&lt;div id=&quot;html_64b661e0f696a7a03042070fc1bb780b&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;San Sebastián - Si riparte a pedalare sulla costa!&lt;/div&gt;`)[0];
+                popup_0492753dd07ff68428e30a6d656e5c03.setContent(html_64b661e0f696a7a03042070fc1bb780b);
+            
+        
+
+        marker_71d9ec49967792e14b969e758965306d.bindPopup(popup_0492753dd07ff68428e30a6d656e5c03)
+        ;
+
+        
+    
+    
+                marker_71d9ec49967792e14b969e758965306d.setIcon(beautify_icon_8f86000ce6bf0caecef77eb87a3567ec);
+            
+    
+            var marker_385f5dbbeabbf6f8061fb076ccb359ed = L.marker(
+                [43.3183, -1.9812],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var div_icon_68ed35223102b6b5b3581d4506cf08f4 = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e14 Set 25\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_385f5dbbeabbf6f8061fb076ccb359ed.setIcon(div_icon_68ed35223102b6b5b3581d4506cf08f4);
+            
+    
+            var marker_521c89c1259b2eb88a310ff1efd239a0 = L.marker(
+                [42.88, -9.3],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var beautify_icon_1471c7fab6851a94254a28d08b73723d = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;person-biking&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#F39C12&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#F39C12&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_521c89c1259b2eb88a310ff1efd239a0.setIcon(beautify_icon_1471c7fab6851a94254a28d08b73723d);
+        
+    
+        var popup_816c76b63f48d15e012584fd8ae50201 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_12887a3c925da6320e5bb993503db29d = $(`&lt;div id=&quot;html_12887a3c925da6320e5bb993503db29d&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Finisterre&lt;/div&gt;`)[0];
+                popup_816c76b63f48d15e012584fd8ae50201.setContent(html_12887a3c925da6320e5bb993503db29d);
+            
+        
+
+        marker_521c89c1259b2eb88a310ff1efd239a0.bindPopup(popup_816c76b63f48d15e012584fd8ae50201)
+        ;
+
+        
+    
+    
+                marker_521c89c1259b2eb88a310ff1efd239a0.setIcon(beautify_icon_1471c7fab6851a94254a28d08b73723d);
+            
+    
+            var marker_78e9491158bd3bb3ad3c63e4c7e4075d = L.marker(
+                [42.88, -9.3],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var div_icon_b2ef54c4adf3a499c2645323d18524cd = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e30 Sep 25\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_78e9491158bd3bb3ad3c63e4c7e4075d.setIcon(div_icon_b2ef54c4adf3a499c2645323d18524cd);
+            
+    
+            var marker_36e3846ccd42bd362d3aaa9ed11d8123 = L.marker(
+                [41.15, -8.63],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var beautify_icon_68716812c18236ec80b9a049ff249b3b = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;person-biking&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#F39C12&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#F39C12&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_36e3846ccd42bd362d3aaa9ed11d8123.setIcon(beautify_icon_68716812c18236ec80b9a049ff249b3b);
+        
+    
+        var popup_e91b73bd3984626895a75f19d2399628 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_31631d8b31097a3119892679612c8d99 = $(`&lt;div id=&quot;html_31631d8b31097a3119892679612c8d99&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Porto&lt;/div&gt;`)[0];
+                popup_e91b73bd3984626895a75f19d2399628.setContent(html_31631d8b31097a3119892679612c8d99);
+            
+        
+
+        marker_36e3846ccd42bd362d3aaa9ed11d8123.bindPopup(popup_e91b73bd3984626895a75f19d2399628)
+        ;
+
+        
+    
+    
+                marker_36e3846ccd42bd362d3aaa9ed11d8123.setIcon(beautify_icon_68716812c18236ec80b9a049ff249b3b);
+            
+    
+            var marker_7da8820c41738468ed80144680b27340 = L.marker(
+                [41.15, -8.63],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var div_icon_0740be28fc917db7936a33404544323b = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e10 Oct 25\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_7da8820c41738468ed80144680b27340.setIcon(div_icon_0740be28fc917db7936a33404544323b);
+            
+    
+            var marker_084d8107e45f2e7a8098e8ceea298af2 = L.marker(
+                [39.5, -9.13],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var beautify_icon_0cb73e231e0279d783d715bd29977ec1 = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;person-biking&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#F39C12&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#F39C12&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_084d8107e45f2e7a8098e8ceea298af2.setIcon(beautify_icon_0cb73e231e0279d783d715bd29977ec1);
+        
+    
+        var popup_8d71d54ce2f98bed7017bbf34b7107cb = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_175cd9a9ebbdc490935b13a18d9fe665 = $(`&lt;div id=&quot;html_175cd9a9ebbdc490935b13a18d9fe665&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Ericeira&lt;/div&gt;`)[0];
+                popup_8d71d54ce2f98bed7017bbf34b7107cb.setContent(html_175cd9a9ebbdc490935b13a18d9fe665);
+            
+        
+
+        marker_084d8107e45f2e7a8098e8ceea298af2.bindPopup(popup_8d71d54ce2f98bed7017bbf34b7107cb)
+        ;
+
+        
+    
+    
+                marker_084d8107e45f2e7a8098e8ceea298af2.setIcon(beautify_icon_0cb73e231e0279d783d715bd29977ec1);
+            
+    
+            var marker_fff946d5cc63bcc2d736dc7ff886f307 = L.marker(
+                [39.5, -9.13],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var div_icon_efecc5f00950f402884471eaa1a27447 = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e15 Oct 25\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_fff946d5cc63bcc2d736dc7ff886f307.setIcon(div_icon_efecc5f00950f402884471eaa1a27447);
+            
+    
+            var marker_9a15935300828827d6f02573adebed4f = L.marker(
+                [38.72, -9.14],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var beautify_icon_c89c9952fdb107c17a3cc1a2ac2252ec = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;person-biking&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#F39C12&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#F39C12&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_9a15935300828827d6f02573adebed4f.setIcon(beautify_icon_c89c9952fdb107c17a3cc1a2ac2252ec);
+        
+    
+        var popup_51961fa2f6255c40c8dc11393b77c979 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_2e5b821afc4c006acd3615fcc3577540 = $(`&lt;div id=&quot;html_2e5b821afc4c006acd3615fcc3577540&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Lisbona&lt;/div&gt;`)[0];
+                popup_51961fa2f6255c40c8dc11393b77c979.setContent(html_2e5b821afc4c006acd3615fcc3577540);
+            
+        
+
+        marker_9a15935300828827d6f02573adebed4f.bindPopup(popup_51961fa2f6255c40c8dc11393b77c979)
+        ;
+
+        
+    
+    
+                marker_9a15935300828827d6f02573adebed4f.setIcon(beautify_icon_c89c9952fdb107c17a3cc1a2ac2252ec);
+            
+    
+            var marker_c799747cb570fa2d4a6828f8e7e9722a = L.marker(
+                [38.72, -9.14],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var div_icon_9cd729d09fd0b2153dd759229b2f2a6e = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e20 Oct 25\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_c799747cb570fa2d4a6828f8e7e9722a.setIcon(div_icon_9cd729d09fd0b2153dd759229b2f2a6e);
+            
+    
+            var marker_7b0e47a9370eab88ab81706813c146ac = L.marker(
+                [37.02, -8.93],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var beautify_icon_f3d6c44cedfe4ca0753fbd7adb8e3ce4 = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;person-biking&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#F39C12&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#F39C12&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_7b0e47a9370eab88ab81706813c146ac.setIcon(beautify_icon_f3d6c44cedfe4ca0753fbd7adb8e3ce4);
+        
+    
+        var popup_46115f49c80ce68bf2754a5941b1fbf5 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_b4765766d92d38f75ae567aa4c9e1211 = $(`&lt;div id=&quot;html_b4765766d92d38f75ae567aa4c9e1211&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Sagres&lt;/div&gt;`)[0];
+                popup_46115f49c80ce68bf2754a5941b1fbf5.setContent(html_b4765766d92d38f75ae567aa4c9e1211);
+            
+        
+
+        marker_7b0e47a9370eab88ab81706813c146ac.bindPopup(popup_46115f49c80ce68bf2754a5941b1fbf5)
+        ;
+
+        
+    
+    
+                marker_7b0e47a9370eab88ab81706813c146ac.setIcon(beautify_icon_f3d6c44cedfe4ca0753fbd7adb8e3ce4);
+            
+    
+            var marker_3ef0c6db579712c93a5407b6d2709347 = L.marker(
+                [37.02, -8.93],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var div_icon_b025d6c53b42feabb8640189d623de48 = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e25 Oct 25\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_3ef0c6db579712c93a5407b6d2709347.setIcon(div_icon_b025d6c53b42feabb8640189d623de48);
+            
+    
+            var marker_83b4a97546425c1f695dee2fa950a8a3 = L.marker(
+                [37.0179, -7.9307],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var beautify_icon_5aee073bdbec7be488ba496468b07afb = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;person-biking&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#F39C12&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#F39C12&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_83b4a97546425c1f695dee2fa950a8a3.setIcon(beautify_icon_5aee073bdbec7be488ba496468b07afb);
+        
+    
+        var popup_787e284992e99821be52eb511fed3356 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_8feb49e15a679b73cda1bb2380e8424d = $(`&lt;div id=&quot;html_8feb49e15a679b73cda1bb2380e8424d&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Faro&lt;/div&gt;`)[0];
+                popup_787e284992e99821be52eb511fed3356.setContent(html_8feb49e15a679b73cda1bb2380e8424d);
+            
+        
+
+        marker_83b4a97546425c1f695dee2fa950a8a3.bindPopup(popup_787e284992e99821be52eb511fed3356)
+        ;
+
+        
+    
+    
+                marker_83b4a97546425c1f695dee2fa950a8a3.setIcon(beautify_icon_5aee073bdbec7be488ba496468b07afb);
+            
+    
+            var marker_d6d108d3ddd8a9c9d890800285c3f826 = L.marker(
+                [37.0179, -7.9307],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var div_icon_981ae8789b0f1035a9766d4a97937a00 = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e28 Oct 25\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_d6d108d3ddd8a9c9d890800285c3f826.setIcon(div_icon_981ae8789b0f1035a9766d4a97937a00);
+            
+    
+            var poly_line_f54d1e7fc0fac605437896e458257a5f = L.polyline(
+                [[43.3183, -1.9812], [42.88, -9.3], [41.15, -8.63], [39.5, -9.13], [38.72, -9.14], [37.02, -8.93], [37.0179, -7.9307]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#F39C12&quot;, &quot;dashArray&quot;: &quot;5,8&quot;, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;#F39C12&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 4}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            poly_line_f54d1e7fc0fac605437896e458257a5f.bindTooltip(
+                `&lt;div&gt;
+                     Bici Costa Atlantica (14 Set - 28 Ott 25) - Gambe, onde e tapas
+                 &lt;/div&gt;`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_9fc3073e10b5a69380ff84c49c8eb217 = L.marker(
+                [37.0179, -7.9307],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var beautify_icon_63743cb856ef6c81962a7aee4378a657 = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;sailboat&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#2980B9&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#2980B9&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_9fc3073e10b5a69380ff84c49c8eb217.setIcon(beautify_icon_63743cb856ef6c81962a7aee4378a657);
+        
+    
+        var popup_3070ae001c7996ef307e36965243dafd = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_caa40bf84ac0ef81e42c3d5910a805c6 = $(`&lt;div id=&quot;html_caa40bf84ac0ef81e42c3d5910a805c6&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Faro - Cercasi passaggio per l&#x27;Atlantico&lt;/div&gt;`)[0];
+                popup_3070ae001c7996ef307e36965243dafd.setContent(html_caa40bf84ac0ef81e42c3d5910a805c6);
+            
+        
+
+        marker_9fc3073e10b5a69380ff84c49c8eb217.bindPopup(popup_3070ae001c7996ef307e36965243dafd)
+        ;
+
+        
+    
+    
+                marker_9fc3073e10b5a69380ff84c49c8eb217.setIcon(beautify_icon_63743cb856ef6c81962a7aee4378a657);
+            
+    
+            var marker_55819d9ca15385dc96653aec702a864a = L.marker(
+                [37.0179, -7.9307],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var div_icon_a68b5a98ab717df7cb84993fb6674e3d = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e29 Oct 25\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_55819d9ca15385dc96653aec702a864a.setIcon(div_icon_a68b5a98ab717df7cb84993fb6674e3d);
+            
+    
+            var marker_43f2de12eb6f56286ca754ac690d5e23 = L.marker(
+                [28.1234, -15.4362],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var beautify_icon_77cb4116a23ce5003dbdedd806d124ab = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;sailboat&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#2980B9&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#2980B9&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_43f2de12eb6f56286ca754ac690d5e23.setIcon(beautify_icon_77cb4116a23ce5003dbdedd806d124ab);
+        
+    
+        var popup_cbf0b4e574475f6eb567e05355bc97ea = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_3b7b7c7ae43dfcdab9126e6a517007fd = $(`&lt;div id=&quot;html_3b7b7c7ae43dfcdab9126e6a517007fd&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Las Palmas, Gran Canaria - Pronti per l&#x27;ARC (o quasi)&lt;/div&gt;`)[0];
+                popup_cbf0b4e574475f6eb567e05355bc97ea.setContent(html_3b7b7c7ae43dfcdab9126e6a517007fd);
+            
+        
+
+        marker_43f2de12eb6f56286ca754ac690d5e23.bindPopup(popup_cbf0b4e574475f6eb567e05355bc97ea)
+        ;
+
+        
+    
+    
+                marker_43f2de12eb6f56286ca754ac690d5e23.setIcon(beautify_icon_77cb4116a23ce5003dbdedd806d124ab);
+            
+    
+            var marker_536d90e7d1dd26171aac3c4313a52520 = L.marker(
+                [28.1234, -15.4362],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var div_icon_e12e3cf56b508adbc7063fd5b7f39dab = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e23 Nov 25\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_536d90e7d1dd26171aac3c4313a52520.setIcon(div_icon_e12e3cf56b508adbc7063fd5b7f39dab);
+            
+    
+            var poly_line_ed41fdd2c9af1b71a39b45750c9ee196 = L.polyline(
+                [[37.0179, -7.9307], [28.1234, -15.4362]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#2980B9&quot;, &quot;dashArray&quot;: &quot;&quot;, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;#2980B9&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 4}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            poly_line_ed41fdd2c9af1b71a39b45750c9ee196.bindTooltip(
+                `&lt;div&gt;
+                     Vela Faro→Las Palmas (29 Ott - 03 Nov 25) - Allenamento Atlantico
+                 &lt;/div&gt;`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var circle_91b7ef3481a93552c63677664ee0a5bf = L.circle(
+                [28.1234, -15.4362],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#2980B9&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#AED6F1&quot;, &quot;fillOpacity&quot;: 0.3, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 250000, &quot;stroke&quot;: true, &quot;weight&quot;: 1}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            circle_91b7ef3481a93552c63677664ee0a5bf.bindTooltip(
+                `&lt;div&gt;
+                     Sosta e preparativi (panico?) ARC a Gran Canaria
+03 Nov - 23 Nov 25
+                 &lt;/div&gt;`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_d43202ced7486193c886b7da422cd4a2 = L.marker(
+                [14.0108, -60.9707],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var beautify_icon_b7310c39b3ffab726259be9580b0b809 = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;sailboat&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#1A5276&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#1A5276&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_d43202ced7486193c886b7da422cd4a2.setIcon(beautify_icon_b7310c39b3ffab726259be9580b0b809);
+        
+    
+        var popup_7c1d3c8ee5520e0fba2953f87925e4c9 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_a769cb5bdf640856d93241efb2554bef = $(`&lt;div id=&quot;html_a769cb5bdf640856d93241efb2554bef&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Saint Lucia, Caraibi - Terra! (Finalmente)&lt;/div&gt;`)[0];
+                popup_7c1d3c8ee5520e0fba2953f87925e4c9.setContent(html_a769cb5bdf640856d93241efb2554bef);
+            
+        
+
+        marker_d43202ced7486193c886b7da422cd4a2.bindPopup(popup_7c1d3c8ee5520e0fba2953f87925e4c9)
+        ;
+
+        
+    
+    
+                marker_d43202ced7486193c886b7da422cd4a2.setIcon(beautify_icon_b7310c39b3ffab726259be9580b0b809);
+            
+    
+            var marker_247a99fa307c123dad10ab79361c8dd6 = L.marker(
+                [14.0108, -60.9707],
+                {
+}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            var div_icon_76581461a5eee3b41fded2b2ee9eb4df = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e10-15 Dic 25\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_247a99fa307c123dad10ab79361c8dd6.setIcon(div_icon_76581461a5eee3b41fded2b2ee9eb4df);
+            
+    
+            var poly_line_b5ef64716b89454a7b76a3624e3819df = L.polyline(
+                [[28.1234, -15.4362], [14.0108, -60.9707]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#1A5276&quot;, &quot;dashArray&quot;: &quot;&quot;, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;#1A5276&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 4}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            poly_line_b5ef64716b89454a7b76a3624e3819df.bindTooltip(
+                `&lt;div&gt;
+                     ARC: Traversata Atlantica (23 Nov - 10/15 Dic 25) - Onde, stelle e mal di mare
+                 &lt;/div&gt;`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var circle_bb37c882e5e97cf10a2d0af19a61134d = L.circle(
+                [14.0108, -60.9707],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#1A5276&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#A9CCE3&quot;, &quot;fillOpacity&quot;: 0.3, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 300000, &quot;stroke&quot;: true, &quot;weight&quot;: 1}
+            ).addTo(feature_group_549aa684c493680fd140acc4194c06eb);
+        
+    
+            circle_bb37c882e5e97cf10a2d0af19a61134d.bindTooltip(
+                `&lt;div&gt;
+                     Esplorazione Caraibi (e recupero energie)
+15 Dic 25 - 15 Feb 26
+                 &lt;/div&gt;`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            feature_group_549aa684c493680fd140acc4194c06eb.addTo(map_e3200b0f4030762d031f58b8e3e0f3df);
+        
+    
+            var feature_group_5ee8d4664151ffe79bf3e088f5b794f7 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_4ff31d058679f80a1e177ce32f1ea71d = L.marker(
+                [9.0, -79.5],
+                {
+}
+            ).addTo(feature_group_5ee8d4664151ffe79bf3e088f5b794f7);
+        
+    
+            var beautify_icon_d06f0e375a7cd067a2250c681f631434 = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;anchor&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#5DADE2&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#5DADE2&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_4ff31d058679f80a1e177ce32f1ea71d.setIcon(beautify_icon_d06f0e375a7cd067a2250c681f631434);
+        
+    
+        var popup_b3c638f77fdddf682a2d1a70bb82f8c9 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_9bd02c45d0efc356b18caaa5ec5195e9 = $(`&lt;div id=&quot;html_9bd02c45d0efc356b18caaa5ec5195e9&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Panama City - Verso il Grande Blu (Pacifico)&lt;/div&gt;`)[0];
+                popup_b3c638f77fdddf682a2d1a70bb82f8c9.setContent(html_9bd02c45d0efc356b18caaa5ec5195e9);
+            
+        
+
+        marker_4ff31d058679f80a1e177ce32f1ea71d.bindPopup(popup_b3c638f77fdddf682a2d1a70bb82f8c9)
+        ;
+
+        
+    
+    
+                marker_4ff31d058679f80a1e177ce32f1ea71d.setIcon(beautify_icon_d06f0e375a7cd067a2250c681f631434);
+            
+    
+            var marker_35d2f3dc47eccb2d34e8c8b06a88aacc = L.marker(
+                [9.0, -79.5],
+                {
+}
+            ).addTo(feature_group_5ee8d4664151ffe79bf3e088f5b794f7);
+        
+    
+            var div_icon_dbef48f0a793be7d7c1d45c0ce79041f = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e16 Feb 26\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_35d2f3dc47eccb2d34e8c8b06a88aacc.setIcon(div_icon_dbef48f0a793be7d7c1d45c0ce79041f);
+            
+    
+            var poly_line_a41c3d95be055f30e8d821123d518740 = L.polyline(
+                [[14.0108, -60.9707], [9.0, -79.5]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#5DADE2&quot;, &quot;dashArray&quot;: &quot;4,8&quot;, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;#5DADE2&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 4}
+            ).addTo(feature_group_5ee8d4664151ffe79bf3e088f5b794f7);
+        
+    
+            poly_line_a41c3d95be055f30e8d821123d518740.bindTooltip(
+                `&lt;div&gt;
+                     Passaggio via mare Caraibi→Panama (Feb 26) - Si cambia oceano!
+                 &lt;/div&gt;`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var circle_88a3f6abf9d6b503939c3cf2cbbcce6d = L.circle(
+                [9.0, -79.5],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#8E44AD&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#D5B9F8&quot;, &quot;fillOpacity&quot;: 0.3, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 200000, &quot;stroke&quot;: true, &quot;weight&quot;: 1}
+            ).addTo(feature_group_5ee8d4664151ffe79bf3e088f5b794f7);
+        
+    
+            circle_88a3f6abf9d6b503939c3cf2cbbcce6d.bindTooltip(
+                `&lt;div&gt;
+                     Preparativi a Panama (e ricerca mappe del tesoro)
+16 Feb - 28 Feb 26
+                 &lt;/div&gt;`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_948a638acd0a251637693af5a6a59d66 = L.marker(
+                [9.0, -79.5],
+                {
+}
+            ).addTo(feature_group_5ee8d4664151ffe79bf3e088f5b794f7);
+        
+    
+            var beautify_icon_950da59e323e4d2bd6eb5e1c9acc69ac = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;sailboat&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#27AE60&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#27AE60&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_948a638acd0a251637693af5a6a59d66.setIcon(beautify_icon_950da59e323e4d2bd6eb5e1c9acc69ac);
+        
+    
+        var popup_49b5f7a02eb2097518bbec0fa5d13e73 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_06ffdf71a6930dc2b544faf04d7ff2be = $(`&lt;div id=&quot;html_06ffdf71a6930dc2b544faf04d7ff2be&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Panama - Inizio Traversata Pacifico (all&#x27;arrembaggio!)&lt;/div&gt;`)[0];
+                popup_49b5f7a02eb2097518bbec0fa5d13e73.setContent(html_06ffdf71a6930dc2b544faf04d7ff2be);
+            
+        
+
+        marker_948a638acd0a251637693af5a6a59d66.bindPopup(popup_49b5f7a02eb2097518bbec0fa5d13e73)
+        ;
+
+        
+    
+    
+                marker_948a638acd0a251637693af5a6a59d66.setIcon(beautify_icon_950da59e323e4d2bd6eb5e1c9acc69ac);
+            
+    
+            var marker_96ac9c41651b9d85090360de47d1935e = L.marker(
+                [9.0, -79.5],
+                {
+}
+            ).addTo(feature_group_5ee8d4664151ffe79bf3e088f5b794f7);
+        
+    
+            var div_icon_4c24ddc6ff93c6c084022a2e85679f6a = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e01 Mar 26\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_96ac9c41651b9d85090360de47d1935e.setIcon(div_icon_4c24ddc6ff93c6c084022a2e85679f6a);
+            
+    
+            var marker_2ed7062bb7bf7af24794b13c8940d6f2 = L.marker(
+                [-0.9, -89.6],
+                {
+}
+            ).addTo(feature_group_5ee8d4664151ffe79bf3e088f5b794f7);
+        
+    
+            var beautify_icon_4e3eab76342e54d908ca92558c63afae = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;sailboat&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#27AE60&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#27AE60&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_2ed7062bb7bf7af24794b13c8940d6f2.setIcon(beautify_icon_4e3eab76342e54d908ca92558c63afae);
+        
+    
+        var popup_25fb61974baf618ef763623569f1a953 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_22b32bf2cb9f97e03a3b5f11ef34be1b = $(`&lt;div id=&quot;html_22b32bf2cb9f97e03a3b5f11ef34be1b&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Galápagos&lt;/div&gt;`)[0];
+                popup_25fb61974baf618ef763623569f1a953.setContent(html_22b32bf2cb9f97e03a3b5f11ef34be1b);
+            
+        
+
+        marker_2ed7062bb7bf7af24794b13c8940d6f2.bindPopup(popup_25fb61974baf618ef763623569f1a953)
+        ;
+
+        
+    
+    
+                marker_2ed7062bb7bf7af24794b13c8940d6f2.setIcon(beautify_icon_4e3eab76342e54d908ca92558c63afae);
+            
+    
+            var marker_49d6f2ee5e7c0f0a50c49d53c4609a37 = L.marker(
+                [-0.9, -89.6],
+                {
+}
+            ).addTo(feature_group_5ee8d4664151ffe79bf3e088f5b794f7);
+        
+    
+            var div_icon_cd4400f829341ca9f7756feffe2acd1c = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e10 Mar 26\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_49d6f2ee5e7c0f0a50c49d53c4609a37.setIcon(div_icon_cd4400f829341ca9f7756feffe2acd1c);
+            
+    
+            var poly_line_8805cd4eaaa3544de9e7af7f8667053f = L.polyline(
+                [[9.0, -79.5], [-0.9, -89.6]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#27AE60&quot;, &quot;dashArray&quot;: &quot;&quot;, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;#27AE60&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 4}
+            ).addTo(feature_group_5ee8d4664151ffe79bf3e088f5b794f7);
+        
+    
+            poly_line_8805cd4eaaa3544de9e7af7f8667053f.bindTooltip(
+                `&lt;div&gt;
+                     Vela Panama - Inizio Traversata Pacifico (all&#x27;arrembaggio!)→Galápagos (01 Mar 26 - 10 Mar 26)
+                 &lt;/div&gt;`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var circle_adcfb6156a014f8d1c315f6af78813a9 = L.circle(
+                [-0.9, -89.6],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#2ECC71&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#A9DFBF&quot;, &quot;fillOpacity&quot;: 0.3, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 150000, &quot;stroke&quot;: true, &quot;weight&quot;: 1}
+            ).addTo(feature_group_5ee8d4664151ffe79bf3e088f5b794f7);
+        
+    
+            circle_adcfb6156a014f8d1c315f6af78813a9.bindTooltip(
+                `&lt;div&gt;
+                     Sosta a Galápagos
+10 Mar 26 - 25 Mar 26
+                 &lt;/div&gt;`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_18e31ec2a91ca092957e0630c20a5241 = L.marker(
+                [-9.8, -139.0],
+                {
+}
+            ).addTo(feature_group_5ee8d4664151ffe79bf3e088f5b794f7);
+        
+    
+            var beautify_icon_0f3dac948229b491361d0b8b37cd9a88 = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;sailboat&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#27AE60&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#27AE60&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_18e31ec2a91ca092957e0630c20a5241.setIcon(beautify_icon_0f3dac948229b491361d0b8b37cd9a88);
+        
+    
+        var popup_8a92750c4998a0280e889d1c8e735b36 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_8694b92434d142893940062d6e911a8f = $(`&lt;div id=&quot;html_8694b92434d142893940062d6e911a8f&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Marchesi&lt;/div&gt;`)[0];
+                popup_8a92750c4998a0280e889d1c8e735b36.setContent(html_8694b92434d142893940062d6e911a8f);
+            
+        
+
+        marker_18e31ec2a91ca092957e0630c20a5241.bindPopup(popup_8a92750c4998a0280e889d1c8e735b36)
+        ;
+
+        
+    
+    
+                marker_18e31ec2a91ca092957e0630c20a5241.setIcon(beautify_icon_0f3dac948229b491361d0b8b37cd9a88);
+            
+    
+            var marker_d76c7f2461ebe83511ae1eaaa708b3a0 = L.marker(
+                [-9.8, -139.0],
+                {
+}
+            ).addTo(feature_group_5ee8d4664151ffe79bf3e088f5b794f7);
+        
+    
+            var div_icon_4534a66d6e3ee910853447a48755a7a8 = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e30 Apr 26\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_d76c7f2461ebe83511ae1eaaa708b3a0.setIcon(div_icon_4534a66d6e3ee910853447a48755a7a8);
+            
+    
+            var poly_line_c20667488cf679bfea27b04f1ec65e14 = L.polyline(
+                [[-0.9, -89.6], [-9.8, -139.0]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#27AE60&quot;, &quot;dashArray&quot;: &quot;&quot;, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;#27AE60&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 4}
+            ).addTo(feature_group_5ee8d4664151ffe79bf3e088f5b794f7);
+        
+    
+            poly_line_c20667488cf679bfea27b04f1ec65e14.bindTooltip(
+                `&lt;div&gt;
+                     Vela Galápagos→Marchesi (25 Mar 26 - 30 Apr 26)
+                 &lt;/div&gt;`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var circle_c402f5a7187dc6b6bdb0d1e7531ac80a = L.circle(
+                [-9.8, -139.0],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#2ECC71&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#A9DFBF&quot;, &quot;fillOpacity&quot;: 0.3, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 150000, &quot;stroke&quot;: true, &quot;weight&quot;: 1}
+            ).addTo(feature_group_5ee8d4664151ffe79bf3e088f5b794f7);
+        
+    
+            circle_c402f5a7187dc6b6bdb0d1e7531ac80a.bindTooltip(
+                `&lt;div&gt;
+                     Sosta a Marchesi
+30 Apr 26 - 15 May 26
+                 &lt;/div&gt;`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_83272504e5b00ba75cfd8fccaf337b93 = L.marker(
+                [-17.55, -149.56],
+                {
+}
+            ).addTo(feature_group_5ee8d4664151ffe79bf3e088f5b794f7);
+        
+    
+            var beautify_icon_922a006404bce37786d0b87c2cf79dde = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;sailboat&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#27AE60&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#27AE60&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_83272504e5b00ba75cfd8fccaf337b93.setIcon(beautify_icon_922a006404bce37786d0b87c2cf79dde);
+        
+    
+        var popup_1e8fc515ff7589003758e8d91d7f26db = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_3cbf3851db0c0f74652a4b58eed13784 = $(`&lt;div id=&quot;html_3cbf3851db0c0f74652a4b58eed13784&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Tahiti&lt;/div&gt;`)[0];
+                popup_1e8fc515ff7589003758e8d91d7f26db.setContent(html_3cbf3851db0c0f74652a4b58eed13784);
+            
+        
+
+        marker_83272504e5b00ba75cfd8fccaf337b93.bindPopup(popup_1e8fc515ff7589003758e8d91d7f26db)
+        ;
+
+        
+    
+    
+                marker_83272504e5b00ba75cfd8fccaf337b93.setIcon(beautify_icon_922a006404bce37786d0b87c2cf79dde);
+            
+    
+            var marker_5b3a7bf2f017ae3e16d7d313564fab76 = L.marker(
+                [-17.55, -149.56],
+                {
+}
+            ).addTo(feature_group_5ee8d4664151ffe79bf3e088f5b794f7);
+        
+    
+            var div_icon_670ba2ac3a61ac17d2f9d24e5ae2d996 = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e15 Jun 26\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_5b3a7bf2f017ae3e16d7d313564fab76.setIcon(div_icon_670ba2ac3a61ac17d2f9d24e5ae2d996);
+            
+    
+            var poly_line_70fb5054881d93603ed363cb1aff271f = L.polyline(
+                [[-9.8, -139.0], [-17.55, -149.56]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#27AE60&quot;, &quot;dashArray&quot;: &quot;&quot;, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;#27AE60&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 4}
+            ).addTo(feature_group_5ee8d4664151ffe79bf3e088f5b794f7);
+        
+    
+            poly_line_70fb5054881d93603ed363cb1aff271f.bindTooltip(
+                `&lt;div&gt;
+                     Vela Marchesi→Tahiti (15 May 26 - 15 Jun 26)
+                 &lt;/div&gt;`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var circle_da29324fe06645a2456c2394d9a074c1 = L.circle(
+                [-17.55, -149.56],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#2ECC71&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#A9DFBF&quot;, &quot;fillOpacity&quot;: 0.3, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 150000, &quot;stroke&quot;: true, &quot;weight&quot;: 1}
+            ).addTo(feature_group_5ee8d4664151ffe79bf3e088f5b794f7);
+        
+    
+            circle_da29324fe06645a2456c2394d9a074c1.bindTooltip(
+                `&lt;div&gt;
+                     Sosta a Tahiti
+15 Jun 26 - 30 Jun 26
+                 &lt;/div&gt;`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var feature_group_557f9dbcc56475ebc55d8a0966036917 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_26e1cee9af02182b419726d508ec05de = L.marker(
+                [-2.17, -79.9],
+                {
+}
+            ).addTo(feature_group_557f9dbcc56475ebc55d8a0966036917);
+        
+    
+            var beautify_icon_e7e569f5fc04707cd0848366e7ea710a = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;anchor&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#5DADE2&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#5DADE2&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_26e1cee9af02182b419726d508ec05de.setIcon(beautify_icon_e7e569f5fc04707cd0848366e7ea710a);
+        
+    
+        var popup_f0904c72c7c6f0886aeb31da7f571aba = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_e1357bcb2e0d19d942bf98ecc859b164 = $(`&lt;div id=&quot;html_e1357bcb2e0d19d942bf98ecc859b164&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Guayaquil, Ecuador - Inizio Avventura Sudamericana&lt;/div&gt;`)[0];
+                popup_f0904c72c7c6f0886aeb31da7f571aba.setContent(html_e1357bcb2e0d19d942bf98ecc859b164);
+            
+        
+
+        marker_26e1cee9af02182b419726d508ec05de.bindPopup(popup_f0904c72c7c6f0886aeb31da7f571aba)
+        ;
+
+        
+    
+    
+                marker_26e1cee9af02182b419726d508ec05de.setIcon(beautify_icon_e7e569f5fc04707cd0848366e7ea710a);
+            
+    
+            var marker_4a33e87383ddeb8a19322b5a6c2e59de = L.marker(
+                [-2.17, -79.9],
+                {
+}
+            ).addTo(feature_group_557f9dbcc56475ebc55d8a0966036917);
+        
+    
+            var div_icon_11a81fc6b1079f23d2c2150a8772a80d = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e16 Feb 26\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_4a33e87383ddeb8a19322b5a6c2e59de.setIcon(div_icon_11a81fc6b1079f23d2c2150a8772a80d);
+            
+    
+            var poly_line_5fed52dd1f51ce71629dcc595e1ee5ed = L.polyline(
+                [[14.0108, -60.9707], [-2.17, -79.9]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#5DADE2&quot;, &quot;dashArray&quot;: &quot;4,8&quot;, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;#5DADE2&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 4}
+            ).addTo(feature_group_557f9dbcc56475ebc55d8a0966036917);
+        
+    
+            poly_line_5fed52dd1f51ce71629dcc595e1ee5ed.bindTooltip(
+                `&lt;div&gt;
+                     Passaggio via mare Caraibi→Ecuador (Feb 26) - Rotta a Sud!
+                 &lt;/div&gt;`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var circle_c477f570c69f3541db8090cc02c75c66 = L.circle(
+                [-2.17, -79.9],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#D35400&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#EB984E&quot;, &quot;fillOpacity&quot;: 0.3, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;opacity&quot;: 1.0, &quot;radius&quot;: 200000, &quot;stroke&quot;: true, &quot;weight&quot;: 1}
+            ).addTo(feature_group_557f9dbcc56475ebc55d8a0966036917);
+        
+    
+            circle_c477f570c69f3541db8090cc02c75c66.bindTooltip(
+                `&lt;div&gt;
+                     Esplorazione Ecuador (e acclimatamento)
+16 Feb - 01 Mar 26
+                 &lt;/div&gt;`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            var marker_8bcbadc5cd0fa581da144b1d9c8b68c9 = L.marker(
+                [-2.17, -79.9],
+                {
+}
+            ).addTo(feature_group_557f9dbcc56475ebc55d8a0966036917);
+        
+    
+            var beautify_icon_b661e69ae56d023c34149ef8e8e40777 = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;person-biking&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#E67E22&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#E67E22&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_8bcbadc5cd0fa581da144b1d9c8b68c9.setIcon(beautify_icon_b661e69ae56d023c34149ef8e8e40777);
+        
+    
+        var popup_8ddf7b0ea264f080df4fa2b12d867dbe = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_4dc69057de8251896442f3817a72cea4 = $(`&lt;div id=&quot;html_4dc69057de8251896442f3817a72cea4&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Guayaquil - Inizio Bike Pacifica (e che il dio del ciclismo ci assista)&lt;/div&gt;`)[0];
+                popup_8ddf7b0ea264f080df4fa2b12d867dbe.setContent(html_4dc69057de8251896442f3817a72cea4);
+            
+        
+
+        marker_8bcbadc5cd0fa581da144b1d9c8b68c9.bindPopup(popup_8ddf7b0ea264f080df4fa2b12d867dbe)
+        ;
+
+        
+    
+    
+                marker_8bcbadc5cd0fa581da144b1d9c8b68c9.setIcon(beautify_icon_b661e69ae56d023c34149ef8e8e40777);
+            
+    
+            var marker_3414bff343d0d366a977ed68c9aad05b = L.marker(
+                [-2.17, -79.9],
+                {
+}
+            ).addTo(feature_group_557f9dbcc56475ebc55d8a0966036917);
+        
+    
+            var div_icon_9af07be0d930e1c9a3482b7c193c9a8b = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e01 Mar 26\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_3414bff343d0d366a977ed68c9aad05b.setIcon(div_icon_9af07be0d930e1c9a3482b7c193c9a8b);
+            
+    
+            var marker_6abd068217eeabcd6dac35d93a735df9 = L.marker(
+                [-1.83, -80.75],
+                {
+}
+            ).addTo(feature_group_557f9dbcc56475ebc55d8a0966036917);
+        
+    
+            var beautify_icon_7fdf080ded830fbb38cddcf045ed2f35 = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;person-biking&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#E67E22&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#E67E22&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_6abd068217eeabcd6dac35d93a735df9.setIcon(beautify_icon_7fdf080ded830fbb38cddcf045ed2f35);
+        
+    
+        var popup_48f1ec6cdb8b235409351745bd075f33 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_2f40b4145ebf85067481834ef3e62522 = $(`&lt;div id=&quot;html_2f40b4145ebf85067481834ef3e62522&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Montañita&lt;/div&gt;`)[0];
+                popup_48f1ec6cdb8b235409351745bd075f33.setContent(html_2f40b4145ebf85067481834ef3e62522);
+            
+        
+
+        marker_6abd068217eeabcd6dac35d93a735df9.bindPopup(popup_48f1ec6cdb8b235409351745bd075f33)
+        ;
+
+        
+    
+    
+                marker_6abd068217eeabcd6dac35d93a735df9.setIcon(beautify_icon_7fdf080ded830fbb38cddcf045ed2f35);
+            
+    
+            var marker_a3171e6d972c2828da3536cef0a56117 = L.marker(
+                [-1.83, -80.75],
+                {
+}
+            ).addTo(feature_group_557f9dbcc56475ebc55d8a0966036917);
+        
+    
+            var div_icon_142414ca0660f76a32a8d87a8672ea2e = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e15 Apr 26\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_a3171e6d972c2828da3536cef0a56117.setIcon(div_icon_142414ca0660f76a32a8d87a8672ea2e);
+            
+    
+            var marker_85f2cfa883c19d7dcd718906bf18a5ce = L.marker(
+                [-4.44, -81.28],
+                {
+}
+            ).addTo(feature_group_557f9dbcc56475ebc55d8a0966036917);
+        
+    
+            var beautify_icon_ff32c5bb10119a4e92dfcd105b48e3de = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;person-biking&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#E67E22&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#E67E22&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_85f2cfa883c19d7dcd718906bf18a5ce.setIcon(beautify_icon_ff32c5bb10119a4e92dfcd105b48e3de);
+        
+    
+        var popup_b3c192113bed914e94c4676c34488a7b = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_5a8cd01c830079a1a1ecab693a68645c = $(`&lt;div id=&quot;html_5a8cd01c830079a1a1ecab693a68645c&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Lobitos&lt;/div&gt;`)[0];
+                popup_b3c192113bed914e94c4676c34488a7b.setContent(html_5a8cd01c830079a1a1ecab693a68645c);
+            
+        
+
+        marker_85f2cfa883c19d7dcd718906bf18a5ce.bindPopup(popup_b3c192113bed914e94c4676c34488a7b)
+        ;
+
+        
+    
+    
+                marker_85f2cfa883c19d7dcd718906bf18a5ce.setIcon(beautify_icon_ff32c5bb10119a4e92dfcd105b48e3de);
+            
+    
+            var marker_a8ad538c6436ac4474e8932b085ec2c7 = L.marker(
+                [-4.44, -81.28],
+                {
+}
+            ).addTo(feature_group_557f9dbcc56475ebc55d8a0966036917);
+        
+    
+            var div_icon_17ef20bac07acd87a65e2aa8bb41fde7 = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e15 May 26\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_a8ad538c6436ac4474e8932b085ec2c7.setIcon(div_icon_17ef20bac07acd87a65e2aa8bb41fde7);
+            
+    
+            var marker_d4415a5c6d8cdaeb11ceb4e0ddb1baf7 = L.marker(
+                [-12.05, -77.04],
+                {
+}
+            ).addTo(feature_group_557f9dbcc56475ebc55d8a0966036917);
+        
+    
+            var beautify_icon_a65ee69a1102e651fced9dea2cdffd98 = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;person-biking&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#E67E22&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#E67E22&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_d4415a5c6d8cdaeb11ceb4e0ddb1baf7.setIcon(beautify_icon_a65ee69a1102e651fced9dea2cdffd98);
+        
+    
+        var popup_1dbd7d1a6ba890f93436705fa215c9e6 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_b1d7ac95a101b5dc99f98e22d0e85710 = $(`&lt;div id=&quot;html_b1d7ac95a101b5dc99f98e22d0e85710&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Lima&lt;/div&gt;`)[0];
+                popup_1dbd7d1a6ba890f93436705fa215c9e6.setContent(html_b1d7ac95a101b5dc99f98e22d0e85710);
+            
+        
+
+        marker_d4415a5c6d8cdaeb11ceb4e0ddb1baf7.bindPopup(popup_1dbd7d1a6ba890f93436705fa215c9e6)
+        ;
+
+        
+    
+    
+                marker_d4415a5c6d8cdaeb11ceb4e0ddb1baf7.setIcon(beautify_icon_a65ee69a1102e651fced9dea2cdffd98);
+            
+    
+            var marker_ab370b3133bb5e3b21f9db63f6a9a167 = L.marker(
+                [-12.05, -77.04],
+                {
+}
+            ).addTo(feature_group_557f9dbcc56475ebc55d8a0966036917);
+        
+    
+            var div_icon_8c077a707b891d57edba602aa841ca70 = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e15 Jun 26\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_ab370b3133bb5e3b21f9db63f6a9a167.setIcon(div_icon_8c077a707b891d57edba602aa841ca70);
+            
+    
+            var marker_752aba507a88918fa809951c528453d1 = L.marker(
+                [-20.23, -70.14],
+                {
+}
+            ).addTo(feature_group_557f9dbcc56475ebc55d8a0966036917);
+        
+    
+            var beautify_icon_ca8f9e2078d606087320f1a2840e5777 = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;person-biking&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#E67E22&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#E67E22&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_752aba507a88918fa809951c528453d1.setIcon(beautify_icon_ca8f9e2078d606087320f1a2840e5777);
+        
+    
+        var popup_99c7cb57841ea82bee23303c31c36441 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_1391f9f7085d1a622311b64ddec425bc = $(`&lt;div id=&quot;html_1391f9f7085d1a622311b64ddec425bc&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Iquique&lt;/div&gt;`)[0];
+                popup_99c7cb57841ea82bee23303c31c36441.setContent(html_1391f9f7085d1a622311b64ddec425bc);
+            
+        
+
+        marker_752aba507a88918fa809951c528453d1.bindPopup(popup_99c7cb57841ea82bee23303c31c36441)
+        ;
+
+        
+    
+    
+                marker_752aba507a88918fa809951c528453d1.setIcon(beautify_icon_ca8f9e2078d606087320f1a2840e5777);
+            
+    
+            var marker_fbcfac11767be8f288a232a5ccd0c093 = L.marker(
+                [-20.23, -70.14],
+                {
+}
+            ).addTo(feature_group_557f9dbcc56475ebc55d8a0966036917);
+        
+    
+            var div_icon_ec380d892e9c296705a36a55ecd408cd = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e01 Jul 26\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_fbcfac11767be8f288a232a5ccd0c093.setIcon(div_icon_ec380d892e9c296705a36a55ecd408cd);
+            
+    
+            var marker_17e51a0d20eba5468f92a25ce9144c92 = L.marker(
+                [-34.38, -72.0],
+                {
+}
+            ).addTo(feature_group_557f9dbcc56475ebc55d8a0966036917);
+        
+    
+            var beautify_icon_956930df47cffaedaa4e4615ce59ce46 = new L.BeautifyIcon.icon(
+                {
+  &quot;icon&quot;: &quot;person-biking&quot;,
+  &quot;iconShape&quot;: &quot;marker&quot;,
+  &quot;borderWidth&quot;: 3,
+  &quot;borderColor&quot;: &quot;#E67E22&quot;,
+  &quot;textColor&quot;: &quot;white&quot;,
+  &quot;backgroundColor&quot;: &quot;#E67E22&quot;,
+  &quot;innerIconStyle&quot;: &quot;&quot;,
+  &quot;spin&quot;: false,
+  &quot;isAlphaNumericIcon&quot;: false,
+  &quot;prefix&quot;: &quot;fa&quot;,
+}
+            )
+            marker_17e51a0d20eba5468f92a25ce9144c92.setIcon(beautify_icon_956930df47cffaedaa4e4615ce59ce46);
+        
+    
+        var popup_1358dfcea3389c39c9c7f1965518f846 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_f1d6c37d8a116e37e939eaa64c9e1747 = $(`&lt;div id=&quot;html_f1d6c37d8a116e37e939eaa64c9e1747&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Pichilemu&lt;/div&gt;`)[0];
+                popup_1358dfcea3389c39c9c7f1965518f846.setContent(html_f1d6c37d8a116e37e939eaa64c9e1747);
+            
+        
+
+        marker_17e51a0d20eba5468f92a25ce9144c92.bindPopup(popup_1358dfcea3389c39c9c7f1965518f846)
+        ;
+
+        
+    
+    
+                marker_17e51a0d20eba5468f92a25ce9144c92.setIcon(beautify_icon_956930df47cffaedaa4e4615ce59ce46);
+            
+    
+            var marker_a491eeba9d54c280179cadd885ed5e38 = L.marker(
+                [-34.38, -72.0],
+                {
+}
+            ).addTo(feature_group_557f9dbcc56475ebc55d8a0966036917);
+        
+    
+            var div_icon_4d36f9725215553ae59cbd0c5364a538 = L.divIcon({
+  &quot;html&quot;: &quot;\u003cdiv style=\&quot;font-size:8pt; color:rgba(0,0,0,0.7); text-align:center; white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;\&quot;\u003e30 Jul 26\u003c/div\u003e&quot;,
+  &quot;iconSize&quot;: [150, 24],
+  &quot;iconAnchor&quot;: [75, -10],
+  &quot;className&quot;: &quot;empty&quot;,
+});
+        
+    
+                marker_a491eeba9d54c280179cadd885ed5e38.setIcon(div_icon_4d36f9725215553ae59cbd0c5364a538);
+            
+    
+            var poly_line_6e36df1b30059cf0c03650222c06dfac = L.polyline(
+                [[-2.17, -79.9], [-1.83, -80.75], [-4.44, -81.28], [-12.05, -77.04], [-20.23, -70.14], [-34.38, -72.0]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#E67E22&quot;, &quot;dashArray&quot;: &quot;5,8&quot;, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;#E67E22&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 4}
+            ).addTo(feature_group_557f9dbcc56475ebc55d8a0966036917);
+        
+    
+            poly_line_6e36df1b30059cf0c03650222c06dfac.bindTooltip(
+                `&lt;div&gt;
+                     Bike Costa Pacifica (Mar - Lug 26) - Chilometri, sudore e panorami
+                 &lt;/div&gt;`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+    
+            L.control.fullscreen(
+                {
+  &quot;position&quot;: &quot;topleft&quot;,
+  &quot;title&quot;: &quot;Schermo Intero (Modalit\u00e0 Cinema)&quot;,
+  &quot;titleCancel&quot;: &quot;Esci da Schermo Intero (Ritorno alla Realt\u00e0)&quot;,
+  &quot;forceSeparateButton&quot;: false,
+}
+            ).addTo(map_e3200b0f4030762d031f58b8e3e0f3df);
+        
+    
+            var tile_layer_523b50a81e1cf8c62f509d3777217607 = L.tileLayer(
+                &quot;https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png&quot;,
+                {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\&quot;https://carto.com/attributions\&quot;\u003eCARTO\u003c/a\u003e&quot;, &quot;detect_retina&quot;: false, &quot;max_native_zoom&quot;: 20, &quot;max_zoom&quot;: 20, &quot;min_zoom&quot;: 0, &quot;no_wrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abcd&quot;, &quot;tms&quot;: false}
+            );
+            var mini_map_8646246f6ae1f309f5c31089c8638be5 = new L.Control.MiniMap(
+                tile_layer_523b50a81e1cf8c62f509d3777217607,
+                {
+  &quot;position&quot;: &quot;bottomright&quot;,
+  &quot;width&quot;: 150,
+  &quot;height&quot;: 150,
+  &quot;collapsedWidth&quot;: 25,
+  &quot;collapsedHeight&quot;: 25,
+  &quot;zoomLevelOffset&quot;: -5,
+  &quot;centerFixed&quot;: false,
+  &quot;zoomAnimation&quot;: false,
+  &quot;toggleDisplay&quot;: true,
+  &quot;autoToggleDisplay&quot;: false,
+  &quot;minimized&quot;: true,
+  &quot;zoomLevelOffset&quot;: -6,
+}
+            );
+            map_e3200b0f4030762d031f58b8e3e0f3df.addControl(mini_map_8646246f6ae1f309f5c31089c8638be5);
+        
+    
+            var locate_control_48ef11de5c1959a24710d278783a820a = L.control.locate(
+                {&quot;strings&quot;: {&quot;popup&quot;: &quot;Sei qui (pi\u00f9 o meno... speriamo)&quot;, &quot;title&quot;: &quot;Dove Diavolo Sono?&quot;}}
+            ).addTo(map_e3200b0f4030762d031f58b8e3e0f3df);
+            
+        
+    
+            var layer_control_d8d86ff6c0ad86787b6223d1185f36f4_layers = {
+                base_layers : {
+                    &quot;Mappa Chiara&quot; : tile_layer_111e2a43653c67d7d9f5cccad04f9c7d,
+                    &quot;Mappa Standard&quot; : tile_layer_97e6a0c2dbdd502c5450c795696fb8a1,
+                    &quot;Mappa Satellitare&quot; : tile_layer_533746ddbc0c78b1c10cd82ccb0909dc,
+                },
+                overlays :  {
+                    &quot;Percorso Principale (Teorico)&quot; : feature_group_549aa684c493680fd140acc4194c06eb,
+                    &quot;Opzione Pacifico: Traversata Oceanica&quot; : feature_group_5ee8d4664151ffe79bf3e088f5b794f7,
+                    &quot;Opzione Pacifico: Bici Sudamerica&quot; : feature_group_557f9dbcc56475ebc55d8a0966036917,
+                },
+            };
+            let layer_control_d8d86ff6c0ad86787b6223d1185f36f4 = L.control.layers(
+                layer_control_d8d86ff6c0ad86787b6223d1185f36f4_layers.base_layers,
+                layer_control_d8d86ff6c0ad86787b6223d1185f36f4_layers.overlays,
+                {
+  &quot;position&quot;: &quot;topright&quot;,
+  &quot;collapsed&quot;: false,
+  &quot;autoZIndex&quot;: true,
+}
+            ).addTo(map_e3200b0f4030762d031f58b8e3e0f3df);
+
+        
+&lt;/script&gt;
+&lt;/html&gt;" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="protagonisti" class="content-section">
+        <div class="container">
+            <h2 class="section-title">I Nostri Eroi (Più o Meno)</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                    <div class="character-card">
+                        <img src="images/gg1.jpeg" alt="Foto di GG pronto per l'avventura" class="profile-pic">
+                        <h3>GG - Il Gigante Entusiasta</h3>
+                        <p>Spirito libero con una riserva inesauribile di entusiasmo (e forse un pizzico di <strong>incoscienza</strong>). GG affronta ogni sfida, anche la più assurda, con un gas che potrebbe svegliare un vulcano spento. Qualità: <strong>forza bruta, mente scaltra, instancabile</strong>. Difetti: <strong>Finirà i soldi in birra dopo due mesi</strong>.</p>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-6">
+                    <div class="character-card">
+                        <img src="images/paco.jpeg" alt="Foto di Paco, perso per le montagne" class="profile-pic">
+                        <h3>Paco - L'Esploratore Sagace</h3>
+                        <p>Mente acuta e animo energico, Paco è l'anima organizzatrice del duo. Di cagate ne dice all'infinito, sono il suo pane quotidiano e <strong>la sua grande debolezza</strong> (chi lo conosce sa). L’adrenalina della scoperta lo guida, trasformando ogni imprevisto in… beh, in un altro imprevisto da risolvere. Qualità: <strong>Allegria, responsabilità</strong> (compito arduo di contenere GG). Difetti: <strong>Intestino debole</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="avventura" class="content-section bg-light-custom">
+        <div class="container trip-description">
+            <h2 class="section-title">La Nostra Gloriosa Odissea</h2>
+            <div class="equipment-image-container" style="margin-bottom: 40px;"> 
+                <img src="images/ocean_crossing.jpg" alt="Barca a vela in navigazione oceanica sotto un cielo blu" class="equipment-image" style="max-width: 85%; border: 2px solid var(--primary-color);">
+                 <p class="equipment-image-caption"><em>L'immensità dell'oceano ci attende: la prossima grande sfida.</em></p>
+            </div>
+            <p class="text-center">Allacciate le cinture! GG e Paco stanno per intraprendere un'odissea che riscriverà le regole dell'esplorazione e del bikepacking... o almeno, ci proveranno, speriamo con stile. Dal cuore pulsante dell'Europa, questi due intrepidi avventurieri scateneranno le loro fidate bici e tavole da surf in un tour de force via terra e mare, pronti a collezionare culture esotiche e panorami da cartolina.</p>
+            <p class="text-center">La nostra filosofia di viaggio? Più che un piano, è un manifesto allo <strong>slow travel</strong> e alle <strong>sfide al limite</strong>. Una dichiarazione d'intenti che abbraccia l'imprevisto, l'ingegno e la profonda connessione con i luoghi e le persone, privilegiando la forza delle loro gambe e mezzi a basso impatto per muoversi nel mondo, evitando il più possibile gli aerei.</p>
+            <ul>
+                <li><i class="fas fa-train-subway"></i> <strong>Europa Express, con la Calma dei Campioni:</strong> Da Milano, un inizio accompagnati da altri giovani amici verso Grenoble, assaporando il Vecchio Continente e testando l'attrezzatura.</li>
+                <li><i class="fas fa-person-biking"></i> <strong>Scalate Epiche (e Forse Poco Sensate):</strong> L'ardua impresa di valicare un importante passo alpino con tavole al seguito, per planare (si spera interi) su Grenoble. La discesa sarà un vero test alle capacità di conduzione della bicicletta dei ragazzi! Per i tempi stretti è possibile che la parte francese sarà fatta in autobus/treno perchè le Canarie chiamano il primo novembre.</li>
+                <li><i class="fas fa-person-biking"></i> <strong>Cavalcando l'Atlantico Iberico (e le Salite):</strong> Pedalando come se non ci fosse un domani da San Sebastián lungo le coste selvagge di Spagna e Portogallo, alla ricerca di spot da urlo, onde perfette e, possibilmente, un posto dove montare la tenda.</li>
+                <li><i class="fas fa-sailboat"></i> <strong>Rotta per i Caraibi:</strong> Da Las Palmas de Gran Canaria, si proverà a intrufolarsi nella flotta dell'ARC (Atlantic Rally for Cruisers) il 23 Novembre 2025, oppure con altri disperati che cerchino equipaggio. L'obiettivo: trovare un imbarco direttamente sui pontili o tramite contatti improbabili. Pronti ad attraversare l'Atlantico veleggiando verso Saint Lucia, probabilmente lavando i piatti per tutta la traversata.</li>
+                <li><i class="fas fa-route"></i> <strong>Sogno Pacifico: Due Destini, Stessa Follia:</strong>
+                    <ul style="margin-top: 10px; padding-left: 25px;">
+                        <li><i class="fas fa-ship"></i> <em>Opzione A - Traversata Oceanica da veri Lupi di Mare (o quasi):</em> Dai Caraibi, un passaggio 'al volo' via mare per Panama. Da lì, l'immensità del Pacifico: un'avventura di pura navigazione verso perle come le Galápagos e le isole della Polinesia Francese, affidandosi al buon cuore delle onde, dei venti e di chiunque abbia una cuccetta libera.</li>
+                        <li><i class="fas fa-bicycle"></i> <em>Opzione B - Radici Sudamericane e Polpacci d'Acciaio:</em> Un passaggio marittimo dai Caraibi all'Ecuador segnerà l'inizio di una LUNGA pedalata. Giù per la costa Pacifica del Sudamerica, inseguendo onde mitiche, attraversando deserti e montagne che metteranno alla prova anche i più stoici. Un'immersione nel cuore pulsante del continente fino al Cile, o finché le nostre gambe reggeranno.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p class="text-center mt-4">Dimenticate le tabelle di marcia precise: questo è più un manifesto al viaggio vissuto con spirito indomito e adattamento totale, un brindisi all'imprevisto che diventa la norma, a un'esplorazione che rispetta i ritmi della natura e delle culture, e un tributo a ogni singola, strampalata, meravigliosa connessione umana. Restate sintonizzati, perché il bello deve ancora venire (e probabilmente non andrà come previsto)!</p>
+        </div>
+    </section>
+
+    <section id="attrezzatura" class="content-section bg-darker-custom">
+        <div class="container equipment-description">
+            <h2 class="section-title">L'Arsenale dei Sognatori: Bici, Surf & Tenda</h2>
+            <p class="text-center">L'essenza di un'avventura così particolare risiede anche nella genialità della semplicità e in un pizzico di spirito d’adattamento. Per affrontare le lunghe tratte costiere, noi SaltRiders abbiamo scelto bici gravel equipaggiate con supporti laterali dedicati per trasportare le nostre amate tavole da surf. Questo sistema ingegnoso ci permette di essere agili come gazzelle (carichi come muli) ma con il pregio di avere tutto con noi sulla bici.</p>
+            <div class="equipment-image-container">
+                <img src="images/surfpacking1.jpg" alt="Bikepacking con tavola da surf: l'essenza SaltRiders!" class="equipment-image">
+                 <p class="equipment-image-caption"><em>Il nostro assetto da SaltRiders: bici, tavola e orizzonti infiniti.</em></p>
+            </div>
+            <p class="text-center">Il supporto è leggero ma resistente, e se il vento laterale si farà sentire… fa parte dell’avventura. Con loro anche una tenda compatta, per fermarci dove capita e dormire sotto le stelle, pronti a ripartire all’alba con la fedele compagna d’onda sempre al loro fianco, come un’appendice aerodinamica un po’ sbilenca ma indispensabile.</p> 
+            <div class="equipment-image-container">
+                <img src="images/grizl.jpg" alt="Bici gravel Grizl pronta per l'avventura su sterrato" class="equipment-image">
+                 <p class="equipment-image-caption"><em>La nostra fidata compagna a due ruote, pronta ad affrontare ogni tipo di terreno.</em></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 SaltRiders Adventures - GG & Paco. Mappa generata con Folium (e tanta pazienza). Stay Stoked!</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/marslan390/BeautifyMarker/leaflet-beautify-marker-icon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-locatecontrol/0.66.2/L.Control.Locate.min.js"></script>
+
+    <script>
+        function onDocumentReady(fn) {
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', fn);
+            } else {
+                fn(); 
+            }
+        }
+        function onWindowLoad(fn) {
+            if (document.readyState === 'complete') {
+                fn(); 
+            } else {
+                window.addEventListener('load', fn);
+            }
+        }
+        var leafletMapInstances = []; 
+        function invalidateAllMapsSize() {
+            leafletMapInstances.forEach(function(mapInstance) {
+                if (mapInstance && typeof mapInstance.invalidateSize === 'function') {
+                    mapInstance.invalidateSize({ animate: false });
+                }
+            });
+        }
+        function initializeMapLogic() {
+            if (typeof L !== 'undefined') {
+                var mapDivs = document.querySelectorAll('#map-container .folium-map');
+                mapDivs.forEach(function(div) {
+                    if (div._leaflet_map && leafletMapInstances.indexOf(div._leaflet_map) === -1) {
+                        leafletMapInstances.push(div._leaflet_map);
+                    }
+                });
+                invalidateAllMapsSize();
+            }
+        }
+        onDocumentReady(function () {
+            initializeMapLogic();
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = href.substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        if (targetElement) {
+                            const navbarHeight = document.querySelector('.navbar-custom').offsetHeight;
+                            let headerOffset = navbarHeight;
+                            if (targetId === 'home') {
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                            } else {
+                                const elementPosition = targetElement.getBoundingClientRect().top;
+                                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                            }
+                            const navbarToggler = document.querySelector('.navbar-toggler');
+                            const navbarCollapse = document.querySelector('.navbar-collapse');
+                            if (navbarToggler && navbarCollapse.classList.contains('show')) {
+                                navbarToggler.click(); 
+                            }
+                        }
+                    }
+                });
+            });
+            const sections = document.querySelectorAll('.header-banner, .content-section');
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px 0px -40% 0px", 
+                threshold: 0.05 
+            };
+             const sectionObserver = new IntersectionObserver((entries, observer) => {
+                let intersectingEntry = null;
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (!intersectingEntry || entry.boundingClientRect.top < intersectingEntry.boundingClientRect.top || entry.intersectionRatio > intersectingEntry.intersectionRatio) {
+                            intersectingEntry = entry;
+                        }
+                    }
+                    if (entry.isIntersecting && (entry.target.classList.contains('content-section') || entry.target.classList.contains('header-banner'))) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+                if (intersectingEntry) {
+                    const id = intersectingEntry.target.getAttribute('id');
+                    if (id) {
+                        const navLink = document.querySelector(`.navbar-nav .nav-link[href="#${id}"]`);
+                        if (navLink) {
+                            document.querySelectorAll('.navbar-nav .nav-link').forEach(link => link.classList.remove('active'));
+                            navLink.classList.add('active');
+                        }
+                    }
+                }
+            }, observerOptions);
+            sections.forEach(section => { sectionObserver.observe(section); });
+            function setActiveLinkOnLoad() {
+                let firstVisibleSectionId = 'home'; 
+                let maxVisibility = 0;
+                const navbarHeight = document.querySelector('.navbar-custom')?.offsetHeight || 60;
+                for (const section of sections) {
+                    const rect = section.getBoundingClientRect();
+                    const visibleHeight = Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, navbarHeight));
+                    if (rect.top < window.innerHeight - navbarHeight && rect.bottom > navbarHeight) { 
+                        if (section.id === 'home' && rect.top <= navbarHeight + 5) { 
+                            firstVisibleSectionId = 'home';
+                            maxVisibility = Infinity; 
+                            break; 
+                        }
+                        if (maxVisibility !== Infinity) { 
+                            if (rect.top < (document.getElementById(firstVisibleSectionId)?.getBoundingClientRect().top || Infinity) ) {
+                                firstVisibleSectionId = section.id;
+                            }
+                        }
+                    }
+                    if (section.id === firstVisibleSectionId && !section.classList.contains('visible')) {
+                         section.classList.add('visible');
+                    }
+                }
+                document.querySelectorAll('.navbar-nav .nav-link').forEach(link => link.classList.remove('active'));
+                const activeNavLink = document.querySelector(`.navbar-nav .nav-link[href="#${firstVisibleSectionId}"]`);
+                if (activeNavLink) {
+                    activeNavLink.classList.add('active');
+                }
+            }
+            setTimeout(setActiveLinkOnLoad, 150); 
+        });
+        onWindowLoad(function() {
+            setTimeout(invalidateAllMapsSize, 100); 
+            var resizeDebounceTimeout;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeDebounceTimeout);
+                resizeDebounceTimeout = setTimeout(function() {
+                    invalidateAllMapsSize();
+                }, 250); 
+            });
+            document.addEventListener('visibilitychange', function() {
+                if (document.visibilityState === 'visible') {
+                    setTimeout(function() {
+                        invalidateAllMapsSize();
+                    }, 200); 
+                }
+            });
+        });
+    </script>
+</body>
+</html>
