@@ -240,6 +240,21 @@ body {
     margin-bottom: calc(var(--blog-spacing-unit) * 2.5);
 }
 
+/* Immagine di Copertina del Singolo Post */
+.single-post-featured-image {
+    /* Spaziatura. Il margin negativo sposta l'immagine fuori dal padding del contenitore per un look più pulito */
+    margin: calc(var(--blog-spacing-unit) * 2.5) calc(var(--blog-spacing-unit) * -3);
+    text-align: center; /* Assicura che l'immagine sia centrata se più piccola del suo spazio */
+}
+
+.single-post-featured-image img {
+    max-width: 100%; /* QUESTA È LA REGOLA FONDAMENTALE: l'immagine non sarà mai più larga del suo contenitore. */
+    height: auto;    /* Mantiene le proporzioni corrette */
+    display: block;  /* Rimuove spazi extra sotto l'immagine */
+    border-radius: 0; /* Se l'immagine è a tutta larghezza, meglio senza bordi arrotondati */
+    box-shadow: none; /* L'ombra è già sul contenitore principale */
+}
+
 /* Contenuto del Singolo Post */
 .single-post-content {
     font-size: 1.125rem; /* 18px */
