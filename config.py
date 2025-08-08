@@ -898,10 +898,16 @@ BLOG_POST_TEMPLATE_STR = """
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ post.title }} - SaltRiders Blog</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Roboto+Condensed:wght@400;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <!-- CSS del Blog -->
     <link rel="stylesheet" href="{{ post.get_css_path(post.css_common_filename) }}">
 </head>
 <body>
-    <div class="blog-page-container single-post-page">
+
+    <main class="blog-page-container single-post-page">
         <header class="blog-header single-post-header">
             <nav class="blog-nav">
                 <a href="{{ post.get_main_site_url() }}">Sito Principale SaltRiders</a>
@@ -909,28 +915,26 @@ BLOG_POST_TEMPLATE_STR = """
             </nav>
             <h1>{{ post.title }}</h1>
             <p class="single-post-meta">
-                Pubblicato il: <time datetime="{{ post.date }}">{{ post.date }}</time> 
-                {% if post.author %}da {{ post.author }}{% endif %}
+                <time datetime="{{ post.date }}">{{ post.date }}</time>
+                {% if post.author %}<span> &bull; {{ post.author }}</span>{% endif %}
             </p>
         </header>
 
-        <main>
-            {% if post.image %}
-            <figure class="single-post-featured-image">
-                <img src="{{ post.get_image_path(post.image) }}" alt="Immagine di copertina per {{ post.title }}">
-            </figure>
-            {% endif %}
+        {% if post.image %}
+        <figure class="single-post-featured-image">
+            <img src="{{ post.get_image_path(post.image) }}" alt="Immagine di copertina per {{ post.title }}">
+        </figure>
+        {% endif %}
 
-            <article class="single-post-content">
-                {{ post.content_html | safe }}
-            </article>
-        </main>
-
+        <article class="single-post-content">
+            {{ post.content_html | safe }}
+        </article>
 
         <footer class="blog-footer">
             <p>© SaltRiders Adventures</p>
         </footer>
-    </div>
+    </main>
+
 </body>
 </html>
 """
@@ -942,50 +946,52 @@ BLOG_INDEX_TEMPLATE_STR = """
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SaltRiders Blog - {{ lang_code.upper() }}</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Roboto+Condensed:wght@400;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <!-- CSS del Blog -->
     <link rel="stylesheet" href="{{ get_css_path(css_common_filename) }}">
-    <!-- Non servono stili inline qui se usiamo bene blog_style.css -->
 </head>
 <body>
-    <div class="blog-index-page"> <!-- Contenitore specifico per la pagina indice -->
-        <header class="blog-header blog-index-header">
-            <nav class="blog-nav">
-                <a href="{{ main_site_url() }}">Sito Principale SaltRiders</a>
-            </nav>
-            <h1>SaltRiders Blog <span class="lang-indicator">({{ lang_code.upper() }})</span></h1>
-            <p class="blog-index-subtitle">Cronache, avventure e riflessioni dal nostro viaggio intorno al mondo.</p>
-        </header>
 
-        <main class="blog-container blog-post-grid">
-            {% if posts %}
-                {% for post in posts %}
-                <article class="blog-post-card">
-                    <a href="{{ post.url }}" class="card-link-wrapper">
-                        {% if post.image %}
-                        <div class="card-image-container">
-                            <img src="{{ post.get_image_path(post.image) }}" alt="{{ post.title }}" class="card-image">
-                        </div>
-                        {% endif %}
-                        <div class="card-content">
-                            <h2 class="card-title">{{ post.title }}</h2>
-                            <p class="blog-post-meta card-meta">
-                                <span class="meta-date">{{ post.date }}</span>
-                                {% if post.author %}<span class="meta-author">di {{ post.author }}</span>{% endif %}
-                            </p>
-                            <p class="card-summary">{{ post.summary }}</p>
-                            <span class="read-more-card-link">Leggi l'articolo →</span>
-                        </div>
-                    </a>
-                </article>
-                {% endfor %}
-            {% else %}
-                <p class="no-posts-message">Nessun post trovato in questa lingua per ora. L'avventura è appena iniziata, torna presto!</p>
-            {% endif %}
-        </main>
+    <header class="blog-header blog-index-header">
+        <nav class="blog-nav">
+            <a href="{{ main_site_url() }}">Sito Principale SaltRiders</a>
+        </nav>
+        <h1>SaltRiders Blog <span class="lang-indicator">({{ lang_code.upper() }})</span></h1>
+        <p class="blog-index-subtitle">Cronache, avventure e riflessioni dal nostro viaggio intorno al mondo.</p>
+    </header>
 
-        <footer class="blog-footer">
-            <p>© SaltRiders Adventures</p>
-        </footer>
-    </div>
+    <main class="blog-post-grid">
+        {% for post in posts %}
+        <article class="blog-post-card">
+            <a href="{{ post.url }}" class="card-link-wrapper">
+                {% if post.image %}
+                <div class="card-image-container">
+                    <img src="{{ post.get_image_path(post.image) }}" alt="Anteprima di {{ post.title }}" class="card-image">
+                </div>
+                {% endif %}
+                <div class="card-content">
+                    <h2 class="card-title">{{ post.title }}</h2>
+                    <p class="card-meta">
+                        <span class="meta-date">{{ post.date }}</span>
+                        {% if post.author %}<span class="meta-author">{{ post.author }}</span>{% endif %}
+                    </p>
+                    <p class="card-summary">{{ post.summary }}</p>
+                    <span class="read-more-card-link">Leggi l'articolo →</span>
+                </div>
+            </a>
+        </article>
+        {% else %}
+            <p class="no-posts-message">Nessun post trovato in questa lingua per ora. L'avventura è appena iniziata, torna presto!</p>
+        {% endfor %}
+    </main>
+
+    <footer class="blog-footer">
+        <p>© SaltRiders Adventures</p>
+    </footer>
+
 </body>
 </html>
 """
